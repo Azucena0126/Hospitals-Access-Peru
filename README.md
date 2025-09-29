@@ -1,6 +1,4 @@
-## Simpson's Paradox Dashboard with Python
-
-This dashboard was based off of the dashboard made by [Bach and Tan](https://github.com/DigitalCausalityLab/simpsonsparadox) to demonstrate the same phenomenon. This example is taken from Glymour et al. (2016)
+## Hospital Access Perú with Python
 
 ### Running locally
 
@@ -20,12 +18,6 @@ Now activate the virtual environment:
 env/Scripts/activate
 ```
 
-#### Linux/MacOS
-
-```
-source env/bin/activate
-```
-
 Now you must install the necessary dependencies to run the dashboard:
 
 ```
@@ -39,7 +31,3 @@ streamlit run src/streamlit_app.py
 ```
 
 This should start a locally hosted server and automatically open a browser tab with the application
-
-### References
-
-Glymour, Madelyn, Judea Pearl, and Nicholas P. Jewell. Causal inference in statistics: A primer. John Wiley & Sons, 2016. 
