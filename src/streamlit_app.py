@@ -1,13 +1,21 @@
 import streamlit as st
 from estimation import execute_regressions, generate_data
 from plots import *
+from geospatial_analysis_gp import *
 
 data = generate_data()
 results, results_data = execute_regressions(data)
 
+# Cargar datasets - task1
+df = cargar_ipress(r'../data/IPRESS.csv')
+maps = cargar_distritos(r'../data/DISTRITOS.shp')
+# Crear dataset combinado - task1
+dataset_cv = crear_dataset(maps, df)
+
+
 st.set_page_config(page_title="Simpson's Paradox", layout="wide")
 
-tab1, tab2, tab3 = st.tabs(["Simpson's Paradox", "Code", "References"])
+tab1, tab2, tab3, tab4 = st.tabs(["Simpson's Paradox", "Code", "References","🗺️ Tab 2: Static Maps & Department Analysis"])
 
 with tab1:
 
@@ -67,5 +75,24 @@ Glymour, Madelyn, Judea Pearl, and Nicholas P. Jewell. Causal inference in stati
 """
 )
 
+with tab4:
+        st.markdown("""
+### Static maps created with GeoPandas:
 
+#### Task 1: Static Maps — Hospital Count by District
+"""
+        )
+        col1, col2, col3 = st.columns([1,1,1])  # columnas iguales
+        st.write("---")
 
+        with col1:
+                fig = plot_hospitales(dataset_cv, filtro="with", titulo="Distritos con hospitales públicos")
+                st.pyplot(fig, use_container_width=True)
+
+        with col2:
+                fig = plot_hospitales(dataset_cv, filtro="without", color='#51829B', titulo="Distritos sin hospitales públicos")
+                st.pyplot(fig, use_container_width=True)
+
+        with col3:
+                fig = plot_hospitales(dataset_cv, filtro="top10", titulo="Top 10 distritos con más hospitales")
+                st.pyplot(fig, use_container_width=True)
