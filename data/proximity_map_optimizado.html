@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_859d58f6b252c626ea50f3db470fad34 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 300px; height: 160px; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:14px; padding: 10px; border-radius: 5px">
+            <h4 style="margin-top:0">🏥 PROXIMITY VISUALIZATION</h4>
+            <p><span style="color:red; font-weight:bold">●</span> Menor densidad hospitalaria</p>
+            <p><span style="color:green; font-weight:bold">●</span> Mayor densidad hospitalaria</p>
+            <p><b>Radio:</b> 10km</p>
+            <p><b>Departamentos:</b> Lima & Loreto</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_859d58f6b252c626ea50f3db470fad34" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_859d58f6b252c626ea50f3db470fad34 = L.map(
+                "map_859d58f6b252c626ea50f3db470fad34",
+                {
+                    center: [-9.189967, -75.015152],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7f46bf7d723c8412f4f6a84e319f04c8 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_7f46bf7d723c8412f4f6a84e319f04c8.addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+            var circle_d740bf49d52f74c293771d0ea26d175c = L.circle(
+                [-12.73005, -76.20807],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+        var popup_bfae025d48a889f64424d189f205a116 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e3d156d2402344ee0f5a12c699ba9371 = $(`<div id="html_e3d156d2402344ee0f5a12c699ba9371" style="width: 100.0%; height: 100.0%;">                 <b>LIMA</b><br>                 <b>ACACHI</b><br>                 Hospitales en 10km: <b>0</b>                 </div>`)[0];
+                popup_bfae025d48a889f64424d189f205a116.setContent(html_e3d156d2402344ee0f5a12c699ba9371);
+            
+        
+
+        circle_d740bf49d52f74c293771d0ea26d175c.bindPopup(popup_bfae025d48a889f64424d189f205a116)
+        ;
+
+        
+    
+    
+            circle_d740bf49d52f74c293771d0ea26d175c.bindTooltip(
+                `<div>
+                     LIMA: ACACHI - 0 hospitales
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_569bc43ecfd994767c03bd981d27a643 = L.marker(
+                [-12.73005, -76.20807],
+                {
+}
+            ).addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+            var icon_4674dbbdca9f774257c437ebf6fb4f98 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7c9870fcf2abfc607226fdd2bad6ee78 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_edb8873cf7d150c0a53e3f17d758b933 = $(`<div id="html_edb8873cf7d150c0a53e3f17d758b933" style="width: 100.0%; height: 100.0%;"><b>ACACHI</b><br>0 hospitales en 10km</div>`)[0];
+                popup_7c9870fcf2abfc607226fdd2bad6ee78.setContent(html_edb8873cf7d150c0a53e3f17d758b933);
+            
+        
+
+        marker_569bc43ecfd994767c03bd981d27a643.bindPopup(popup_7c9870fcf2abfc607226fdd2bad6ee78)
+        ;
+
+        
+    
+    
+            marker_569bc43ecfd994767c03bd981d27a643.bindTooltip(
+                `<div>
+                     ACACHI
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_569bc43ecfd994767c03bd981d27a643.setIcon(icon_4674dbbdca9f774257c437ebf6fb4f98);
+            
+    
+            var circle_baa447f480866c6080f6f3a3dfa95d7a = L.circle(
+                [-12.03038, -77.04702],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+        var popup_c20790cf275baf72fa7e612d2c1a4ff8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b6fdf228381ff0a328c56a2e72c2b3b3 = $(`<div id="html_b6fdf228381ff0a328c56a2e72c2b3b3" style="width: 100.0%; height: 100.0%;">                 <b>LIMA</b><br>                 <b>BARRIO INDUSTRIAL</b><br>                 Hospitales en 10km: <b>25</b>                 </div>`)[0];
+                popup_c20790cf275baf72fa7e612d2c1a4ff8.setContent(html_b6fdf228381ff0a328c56a2e72c2b3b3);
+            
+        
+
+        circle_baa447f480866c6080f6f3a3dfa95d7a.bindPopup(popup_c20790cf275baf72fa7e612d2c1a4ff8)
+        ;
+
+        
+    
+    
+            circle_baa447f480866c6080f6f3a3dfa95d7a.bindTooltip(
+                `<div>
+                     LIMA: BARRIO INDUSTRIAL - 25 hospitales
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_5a7dfbba870a986255e83de5b109eca8 = L.marker(
+                [-12.03038, -77.04702],
+                {
+}
+            ).addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+            var icon_640a47584e6f31ad3cf0fcb7bfc431a2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_998d498152998d1cdf6df70982bb8c5b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3dac110c340b76d7be22a44a0ef950e1 = $(`<div id="html_3dac110c340b76d7be22a44a0ef950e1" style="width: 100.0%; height: 100.0%;"><b>BARRIO INDUSTRIAL</b><br>25 hospitales en 10km</div>`)[0];
+                popup_998d498152998d1cdf6df70982bb8c5b.setContent(html_3dac110c340b76d7be22a44a0ef950e1);
+            
+        
+
+        marker_5a7dfbba870a986255e83de5b109eca8.bindPopup(popup_998d498152998d1cdf6df70982bb8c5b)
+        ;
+
+        
+    
+    
+            marker_5a7dfbba870a986255e83de5b109eca8.bindTooltip(
+                `<div>
+                     BARRIO INDUSTRIAL
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5a7dfbba870a986255e83de5b109eca8.setIcon(icon_640a47584e6f31ad3cf0fcb7bfc431a2);
+            
+    
+            var circle_b299cddf68c7f38347defe8f858c3dfe = L.circle(
+                [-4.36734, -73.56656],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+        var popup_09f0133790c2d5e100acc818ad993c05 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a04df73a12a652c2bfdecbc23a84d706 = $(`<div id="html_a04df73a12a652c2bfdecbc23a84d706" style="width: 100.0%; height: 100.0%;">                 <b>LORETO</b><br>                 <b>1 DE FEBRERO</b><br>                 Hospitales en 10km: <b>0</b>                 </div>`)[0];
+                popup_09f0133790c2d5e100acc818ad993c05.setContent(html_a04df73a12a652c2bfdecbc23a84d706);
+            
+        
+
+        circle_b299cddf68c7f38347defe8f858c3dfe.bindPopup(popup_09f0133790c2d5e100acc818ad993c05)
+        ;
+
+        
+    
+    
+            circle_b299cddf68c7f38347defe8f858c3dfe.bindTooltip(
+                `<div>
+                     LORETO: 1 DE FEBRERO - 0 hospitales
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_fe3a1d1dd193331ad44c3d562249d6ba = L.marker(
+                [-4.36734, -73.56656],
+                {
+}
+            ).addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+            var icon_6e3755768a34241acbad128025c1a203 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8de623664bb8d6f1d9a5ebe82546983c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fc6c3f2bdca756800758f7f59c114ce5 = $(`<div id="html_fc6c3f2bdca756800758f7f59c114ce5" style="width: 100.0%; height: 100.0%;"><b>1 DE FEBRERO</b><br>0 hospitales en 10km</div>`)[0];
+                popup_8de623664bb8d6f1d9a5ebe82546983c.setContent(html_fc6c3f2bdca756800758f7f59c114ce5);
+            
+        
+
+        marker_fe3a1d1dd193331ad44c3d562249d6ba.bindPopup(popup_8de623664bb8d6f1d9a5ebe82546983c)
+        ;
+
+        
+    
+    
+            marker_fe3a1d1dd193331ad44c3d562249d6ba.bindTooltip(
+                `<div>
+                     1 DE FEBRERO
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fe3a1d1dd193331ad44c3d562249d6ba.setIcon(icon_6e3755768a34241acbad128025c1a203);
+            
+    
+            var circle_feeea361f67475887243bf97f5685978 = L.circle(
+                [-3.78232, -73.28708],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10000, "stroke": true, "weight": 3}
+            ).addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+        var popup_fca19199f72ca775a310edae7c089bfa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ee1c94236ff491d2b07a93cd3f806452 = $(`<div id="html_ee1c94236ff491d2b07a93cd3f806452" style="width: 100.0%; height: 100.0%;">                 <b>LORETO</b><br>                 <b>TRES DE OCTUBRE</b><br>                 Hospitales en 10km: <b>5</b>                 </div>`)[0];
+                popup_fca19199f72ca775a310edae7c089bfa.setContent(html_ee1c94236ff491d2b07a93cd3f806452);
+            
+        
+
+        circle_feeea361f67475887243bf97f5685978.bindPopup(popup_fca19199f72ca775a310edae7c089bfa)
+        ;
+
+        
+    
+    
+            circle_feeea361f67475887243bf97f5685978.bindTooltip(
+                `<div>
+                     LORETO: TRES DE OCTUBRE - 5 hospitales
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9c2dbd6a77ff30b651c0eef94a85f296 = L.marker(
+                [-3.78232, -73.28708],
+                {
+}
+            ).addTo(map_859d58f6b252c626ea50f3db470fad34);
+        
+    
+            var icon_9c7fc737cb92eaf5851355f74d0adbca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_de9bd8a0db1241ee8e14fe9b670597eb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_06f8aa06c4e4057c0272261f446cbf8b = $(`<div id="html_06f8aa06c4e4057c0272261f446cbf8b" style="width: 100.0%; height: 100.0%;"><b>TRES DE OCTUBRE</b><br>5 hospitales en 10km</div>`)[0];
+                popup_de9bd8a0db1241ee8e14fe9b670597eb.setContent(html_06f8aa06c4e4057c0272261f446cbf8b);
+            
+        
+
+        marker_9c2dbd6a77ff30b651c0eef94a85f296.bindPopup(popup_de9bd8a0db1241ee8e14fe9b670597eb)
+        ;
+
+        
+    
+    
+            marker_9c2dbd6a77ff30b651c0eef94a85f296.bindTooltip(
+                `<div>
+                     TRES DE OCTUBRE
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9c2dbd6a77ff30b651c0eef94a85f296.setIcon(icon_9c7fc737cb92eaf5851355f74d0adbca);
+            
+</script>
+</html>
