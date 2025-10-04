@@ -2,12 +2,8 @@
 # coding: utf-8
 
 # In[3]:
-
-
 get_ipython().system('pip install folium')
 get_ipython().system('pip install branca')
-
-
 # In[4]:
 
 
